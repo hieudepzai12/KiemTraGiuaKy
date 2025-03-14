@@ -1,0 +1,42 @@
+<%- include('./head') %>
+
+<body>
+
+    <%- include('./nav') %>
+    <%- include('./content') %>
+    <%- include('./footer') %>
+
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/my.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".listLoaiTin").on("click", "a.loaiTin", function (e) {
+                e.preventDefault();
+                var urlLoaiTin = $(this).attr("href");
+                $.get(urlLoaiTin, function (data) {
+                    $(".panel").html(data);
+                })
+            })
+
+            $(".panel").on("click", "a.listPage", function (e) {
+                e.preventDefault();
+                var urlListPage = $(this).attr("href");
+                $.get(urlListPage, function (data) {
+                    $(".panel").html(data);
+                })
+            })
+            $(".panel").on("click", "a.loaiTin2", function (e) {
+                e.preventDefault();
+                var urlListPage = $(this).attr("href");
+                $.get(urlListPage, function (data) {
+                    $(".panel").html(data);
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>

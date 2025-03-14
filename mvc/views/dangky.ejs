@@ -1,0 +1,96 @@
+<%- include('./head') %>
+
+    <body>
+
+        <!-- Navigation -->
+        <%- include("./nav"); %>
+
+            <!-- Page Content -->
+            <div class="container">
+
+                <!-- slider -->
+                <div class="row carousel-holder">
+                    <div class="col-md-2">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Đăng ký tài khoản</div>
+                            <div class="panel-body">
+
+                                <div>
+                                    <label>Username</label>
+                                    <input type="text" class="form-control" placeholder="Username" id="username"
+                                        name="username" required>
+                                </div>
+                                <br>
+                                <div>
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" placeholder="Email" id="email" name="email"
+                                        required>
+                                </div>
+                                <br>
+                                <div>
+                                    <label>Password</label>
+                                    <input type="password" class="form-control" id="password" name="password" required>
+                                </div>
+                                <br>
+                                <div>
+                                    <label>Confirm password</label>
+                                    <input type="password" class="form-control" id="passwordConfirm"
+                                        name="passwordConfirm" required>
+                                </div>
+                                <br>
+                                <div id="kq" style="font-size:14px; color:red;"></div>
+                                <button id="btnDangKy" name="btnDangKy" class="btn btn-success">Đăng ký
+                                </button>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                    </div>
+                </div>
+                <!-- end slide -->
+            </div>
+            <!-- end Page Content -->
+
+            <!-- Footer -->
+            <%- include('./footer') %>
+                <!-- end Footer -->
+
+                <!-- jQuery -->
+                <script src="/js/jquery.js"></script>
+                <!-- Bootstrap Core JavaScript -->
+                <script src="/js/bootstrap.min.js"></script>
+                <script src="/js/my.js"></script>
+                <script>
+                    $(document).ready(function () {
+                        $("#btnDangKy").click(function () {
+                            var username = $("#username").val();
+                            var email = $("#email").val();
+                            var password = $("#password").val();
+                            var passwordConfirm = $("#passwordConfirm").val();
+                            if (password !== passwordConfirm) {
+                                $("#kq").html("Mật khẩu không trùng khớp, vui lòng nhập lại.");
+                            }
+                            else if (!username || !email || !password || !passwordConfirm) {
+                                $("#kq").html("Vui lòng nhập đầy đủ thông tin.");
+                            }
+                            else {
+                                $.post("/dangky", { name: username, email: email, password: password }, function (data) {
+                                    if (data) {
+                                        window.location.href = "/dangnhap";
+                                        window.close();
+                                        alert("Đăng ký thành công");
+                                    } else {
+                                        $("#kq").html("Đăng ký thất bại. Tài khoản đã tồn tại.");
+                                    }
+                                });
+                            }
+                        });
+                    });
+                </script>
+
+    </body>
+
+    </html>

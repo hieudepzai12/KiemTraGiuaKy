@@ -1,0 +1,19 @@
+<div class="col-md-3 ">
+    <ul class="list-group listLoaiTin" id="menu">
+        <li href="#" class="danhMuc list-group-item menu1 active">
+            Danh mục thể loại
+        </li>
+        <% listData.forEach(data => { %>
+            <li href="#" class="list-group-item menu1">
+                <%= data.theLoai.Ten %>
+            </li>
+            <ul>
+                <% data.loaiTin.forEach(lt => { %>
+                <li class="list-group-item liLoaiTin">
+                    <a class="loaiTin" href="/loaitin/<%=lt.id%>/page1"><%= lt.Ten %></a>
+                </li>
+                <% }) %>
+            </ul>
+            <% }) %>
+    </ul>
+</div>

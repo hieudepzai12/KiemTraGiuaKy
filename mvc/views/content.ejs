@@ -1,0 +1,53 @@
+<!-- Page Content -->
+<div class="container">
+    
+    <%- include('./slides') %>
+
+    <div class="space20"></div>
+
+    <%- include('./leftmenu') %>
+
+    <div class="row main-left">
+        <div class="col-md-9">
+            <div class="panel panel-default">
+                <div class="panel-heading danhMuc">
+                    <h2 style="margin-top:0px; margin-bottom:0px;">Tin Tức</h2>
+                </div>
+
+                <div class="panel-body">
+                    <!-- item -->
+
+                    <% listData.forEach(data => { %> 
+                    <div class="row-item row">
+                        <h3>
+                            <a><%= data.theLoai.Ten %></a> |
+                            <% data.loaiTin.forEach(tl => { %>
+                            <small><a class="loaiTin2" href="/loaitin/<%= tl.id %>/page1"><i><%= tl.Ten %></i></a>/</small>
+                            <% }) %>
+                        </h3>
+                        <div class="col-md-12 border-right">
+                            <div class="col-md-3">
+                                <a href="/chitiet/<%= data.tinNoiBat.idLoaiTin %>/<%= data.tinNoiBat.id %>">
+                                    <img class="img-responsive" src="/img/tintuc/<%= data.tinNoiBat.Hinh %>" alt="">
+                                </a>
+                            </div>
+
+                            <div class="col-md-9">
+                                <h3><%= data.tinNoiBat.TieuDe %></h3>
+                                <p><%= data.tinNoiBat.TomTat %></p>
+                                <a class="btnXemNgay btn btn-primary" href="/chitiet/<%= data.tinNoiBat.idLoaiTin %>/<%= data.tinNoiBat.id %>">Xem ngay<span
+                                        class="glyphicon glyphicon-chevron-right"></span></a>
+                            </div>
+                        </div>
+                        <div class="break"></div>
+                    </div>
+                    <% }) %>
+
+                    <!-- end item -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+</div>
+<!-- end Page Content -->
