@@ -7,99 +7,97 @@
             <!-- Content -->
             <div class="container">
 
-                    <div class="row main-left">
-                        <div class="col-md-9">
-                            <div class="panel panel-default">
-                                <div class="panel-heading danhMuc">
-                                    <h4><b>
-                                            Kết quả tìm kiếm cho từ khóa '<%= tuKhoa %>'
-                                        </b></h4>
-                                </div>
-                                <% pagedTimKiem.forEach(tinTuc=> { %>
-                                    <div class="row-item row">
-                                        <div class="col-md-3">
-                                            <a href="/:idLT/:idTin">
-                                                <br>
-                                                <img width="200px" height="200px" class="img-responsive"
-                                                    src="/img/tintuc/<%= tinTuc.Hinh %>" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-9">
-                                            <h3>
-                                                <%= tinTuc.TieuDe %>
-                                            </h3>
-                                            <p>
-                                                <%= tinTuc.TomTat %>
-                                            </p>
-                                            <a class="btnXemNgay btn btn-primary" href="/:idLT/:idTin">Xem ngay <span
-                                                    class="glyphicon glyphicon-chevron-right"></span></a>
-                                        </div>
-                                        <div class="break"></div>
-                                    </div>
-                                    <% }) %>
-
-                                        <!-- Pagination -->
-                                        <div class="row text-center">
-                                            <div class="col-lg-12">
-                                                <ul class="pagination">
-                                                    <li>
-                                                        <a class="listPage"
-                                                            href="/timkiem/page1/<%= tuKhoa %>">&laquo;</a>
-                                                    </li>
-                                                    <% for(let i=fromPage; i <=toPage; i++) { %>
-                                                        <li class="<%= pageNumber == i? 'active' : '' %>">
-                                                            <a class="listPage"
-                                                                href="/timkiem/page<%= i %>/<%= tuKhoa %>">
-                                                                <%= i %>
-                                                            </a>
-                                                        </li>
-                                                        <% } %>
-                                                            <li>
-                                                                <a class="listPage"
-                                                                    href="/timkiem/page<%= pageCount %>/<%= tuKhoa %>">&raquo;</a>
-                                                            </li>
-                                                </ul>
-                                            </div>
-                                        </div>
+                <div class="row main-left">
+                    <div class="col-md-9">
+                        <div class="panel panel-default">
+                            <div class="panel-heading danhMuc">
+                                <h4><b>
+                                        Kết quả tìm kiếm cho từ khóa '<%= tuKhoa %>'
+                                    </b></h4>
                             </div>
+                            <% pagedTimKiem.forEach(tinTuc=> { %>
+                                <div class="row-item row">
+                                    <div class="col-md-3">
+                                        <a href="/chitiet/<%=tinTuc.idLoaiTin%>/<%=tinTuc.id%>">
+                                            <br>
+                                            <img width="200px" height="200px" class="img-responsive"
+                                                src="/img/tintuc/<%= tinTuc.Hinh %>" alt="">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <h3>
+                                            <%= tinTuc.TieuDe %>
+                                        </h3>
+                                        <p>
+                                            <%= tinTuc.TomTat %>
+                                        </p>
+                                        <a class="btnXemNgay btn btn-primary" href="/chitiet/<%=tinTuc.idLoaiTin%>/<%=tinTuc.id%>">Xem ngay <span
+                                                class="glyphicon glyphicon-chevron-right"></span></a>
+                                    </div>
+                                    <div class="break"></div>
+                                </div>
+                                <% }) %>
+
+                                    <!-- Pagination -->
+                                    <div class="row text-center">
+                                        <div class="col-lg-12">
+                                            <ul class="pagination">
+                                                <li>
+                                                    <a class="listPage" href="/timkiem/page1/<%= tuKhoa %>">&laquo;</a>
+                                                </li>
+                                                <% for(let i=fromPage; i <=toPage; i++) { %>
+                                                    <li class="<%= pageNumber == i? 'active' : '' %>">
+                                                        <a class="listPage" href="/timkiem/page<%= i %>/<%= tuKhoa %>">
+                                                            <%= i %>
+                                                        </a>
+                                                    </li>
+                                                    <% } %>
+                                                        <li>
+                                                            <a class="listPage"
+                                                                href="/timkiem/page<%= pageCount %>/<%= tuKhoa %>">&raquo;</a>
+                                                        </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                         </div>
                     </div>
-                    <!-- /.row -->
-                    <!-- End content -->
+                </div>
+                <!-- /.row -->
+                <!-- End content -->
 
-                    <%- include('./footer') %>
+                <%- include('./footer') %>
 
-                        <!-- jQuery -->
-                        <script src="/js/jquery.js"></script>
-                        <!-- Bootstrap Core JavaScript -->
-                        <script src="/js/bootstrap.min.js"></script>
-                        <script src="/js/my.js"></script>
-                        <script>
-                            $(document).ready(function () {
-                                $(".listLoaiTin").on("click", "a.loaiTin", function (e) {
-                                    e.preventDefault();
-                                    var urlLoaiTin = $(this).attr("href");
-                                    $.get(urlLoaiTin, function (data) {
-                                        $(".panel").html(data);
-                                    })
-                                })
-
-                                $(".panel").on("click", "a.listPage", function (e) {
-                                    e.preventDefault();
-                                    var urlListPage = $(this).attr("href");
-                                    $.get(urlListPage, function (data) {
-                                        $(".panel").html(data);
-                                    })
-                                })
-                                $(".panel").on("click", "a.loaiTin2", function (e) {
-                                    e.preventDefault();
-                                    var urlListPage = $(this).attr("href");
-                                    $.get(urlListPage, function (data) {
-                                        $(".panel").html(data);
-                                    })
+                    <!-- jQuery -->
+                    <script src="/js/jquery.js"></script>
+                    <!-- Bootstrap Core JavaScript -->
+                    <script src="/js/bootstrap.min.js"></script>
+                    <script src="/js/my.js"></script>
+                    <script>
+                        $(document).ready(function () {
+                            $(".listLoaiTin").on("click", "a.loaiTin", function (e) {
+                                e.preventDefault();
+                                var urlLoaiTin = $(this).attr("href");
+                                $.get(urlLoaiTin, function (data) {
+                                    $(".panel").html(data);
                                 })
                             })
-                        </script>
+
+                            $(".panel").on("click", "a.listPage", function (e) {
+                                e.preventDefault();
+                                var urlListPage = $(this).attr("href");
+                                $.get(urlListPage, function (data) {
+                                    $(".panel").html(data);
+                                })
+                            })
+                            $(".panel").on("click", "a.loaiTin2", function (e) {
+                                e.preventDefault();
+                                var urlListPage = $(this).attr("href");
+                                $.get(urlListPage, function (data) {
+                                    $(".panel").html(data);
+                                })
+                            })
+                        })
+                    </script>
     </body>
 
     </html>

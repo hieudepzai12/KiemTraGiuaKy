@@ -31,7 +31,7 @@
 
                         <!-- Author -->
                         <p class="lead">
-                            by <a class="blueDetail" href="#">Hiếu Kiên</a>
+                            by <a class="blueDetail" href="#">Hoàng Hiếu</a>
                         </p>
 
                         <!-- Preview Image -->
@@ -53,16 +53,18 @@
 
                         <!-- Comments Form -->
                         <% if (sessionState) { %>
-                            <div style="color:black;" class="well">
-                                <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-
-                                <div class="form-group">
-                                    <textarea class="form-control" rows="3" id="txtComment"
-                                        name="txtComment"></textarea>
+                            <form action="/comment" method="post">
+                                <div style="color:black;" class="well">
+                                    <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
+                                    <input type="hidden" name="idTin" value="<%= chiTiet.id %>">
+                                    <div class="form-group">
+                                        <textarea class="form-control" rows="3" id="txtComment"
+                                            name="comment"></textarea>
+                                    </div>
+                                    <button id="btnComment" name="btnComment" class="btn btn-primary">Gửi</button>
+    
                                 </div>
-                                <button id="btnComment" name="btnComment" class="btn btn-primary">Gửi</button>
-
-                            </div>
+                            </form>
                             <% } else { %>
                                 <h4><a class="blueDetail" href="/dangnhap">Đăng nhập</a> để có thể bình luận.</h4>
                                 <% } %>
@@ -75,7 +77,7 @@
                                         <div class="media"
                                             style="background-color:rgb(129, 129, 129); padding:5px; border: 1px solid white; border-radius:5px;">
                                             <a class="pull-left" href="#">
-                                                <img class="media-object" src="image/Kien.jpg" width="70px">
+                                                <img class="media-object" src="image/Hiếu.jpg" width="70px">
                                             </a>
                                             <div class="media-body">
                                                 <h4 class="media-heading" style="color:white">
@@ -165,6 +167,7 @@
             <!-- Bootstrap Core JavaScript -->
             <script src="js/bootstrap.min.js"></script>
             <script src="js/my.js"></script>
+            <!-- Chú thích comment-->
             <script>
                 $(document).ready(function () {
                     $("#btnComment").click(function () {

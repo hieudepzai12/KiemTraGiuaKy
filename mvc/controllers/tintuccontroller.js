@@ -14,12 +14,15 @@ const trangChu = async (req, res) => {
             listData.push({ theLoai, loaiTin, tinNoiBat, username, sessionState });
         }
     }
+    console.log(listData.loaiTin);
     res.render('index', { slides, listData });
 }
 
 const loaiTinPhanTrang = async (req, res) => {
     const idLT = req.params.idLT;
+    //Hàm đếm số trang
     const pageCount = Math.ceil((await tinTucModel.getTinTucByIdLT(idLT)).length / 10);
+    //Hàm phân trang
     const pageNumber = req.params.page;
     const pagedTinTuc = await tinTucModel.getPagedTinTucByIdLT(idLT, (pageNumber - 1) * 5);
     const fromPage = Math.max(1, (pageNumber - 2));
@@ -33,7 +36,7 @@ const timKiem = async (req, res) => {
     sessionState = req.session.logined;
     const tuKhoa = req.query.tuKhoa || req.params.tuKhoa;
     const pageCount = Math.ceil((await tinTucModel.getTimKiemByTuKhoa(tuKhoa, tuKhoa)).length / 10);
-    const pageNumber = req.params.page || 1; 
+    const pageNumber = req.params.page || 1;
     const pagedTimKiem = await tinTucModel.getPagedTimKiemByTuKhoa(tuKhoa, tuKhoa, (pageNumber - 1) * 5);
     const fromPage = Math.max(1, (pageNumber - 2));
     const toPage = Math.min((pageNumber + 2), pageCount);
@@ -62,4 +65,15 @@ const chiTiet = async (req, res) => {
 
 }
 
-module.exports = { trangChu, loaiTinPhanTrang, timKiem, chiTiet };
+// Hàm conment
+const addComment = async (req, res) => {
+let comment = req.body.comment;
+let idTin= req.body.idTin;
+console.log(idTin);
+let idUser = req.session.idUser;
+console.log(comment, idTin, idUser);
+await tinTucModel.addComment(idUser, idTin, comment);
+console.log(comment);
+}
+
+module.exports = { trangChu, loaiTinPhanTrang, timKiem, chiTiet, addComment };

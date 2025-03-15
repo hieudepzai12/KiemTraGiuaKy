@@ -69,7 +69,7 @@ a:hover {
 }
 
 .navbar {
-	background-color: #059212;
+	background-color: #131313;
 }
 
 .btnSubmit {
@@ -98,16 +98,16 @@ body {
 }
 
 .navbar-nav a:hover {
-	color: #000000 !important;
+	color: #ee1616 !important;
 }
 
 .danhMuc {
-	background-color: #059212 !important;
+	background-color: #1a93e3 !important;
 	color: white!important;;
 }
 
 .btnXemNgay {
-	background-color: #9BEC00;
+	background-color: #3b25fb;
 	color: #000000;
 	transition: color 0.3s ease !important;
 }

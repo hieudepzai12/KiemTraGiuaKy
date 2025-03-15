@@ -1,4 +1,4 @@
-<div class="col-md-3 ">
+<div class="col-md-3">
     <ul class="list-group listLoaiTin" id="menu">
         <li href="#" class="danhMuc list-group-item menu1 active">
             Danh mục thể loại
@@ -7,13 +7,33 @@
             <li href="#" class="list-group-item menu1">
                 <%= data.theLoai.Ten %>
             </li>
-            <ul>
+            <ul class="sub-menu" style="display: none;">
                 <% data.loaiTin.forEach(lt => { %>
                 <li class="list-group-item liLoaiTin">
                     <a class="loaiTin" href="/loaitin/<%=lt.id%>/page1"><%= lt.Ten %></a>
                 </li>
                 <% }) %>
             </ul>
-            <% }) %>
+        <% }) %>
     </ul>
 </div>
+
+<script>
+    $(document).ready(function() {
+        $(".menu1").click(function() {
+            // Ẩn tất cả các sub-menu
+            $(".sub-menu").slideUp();
+            // Hiển thị sub-menu của mục được nhấp
+            if (!$(this).next(".sub-menu").is(":visible")) {
+                $(this).next(".sub-menu").slideDown();
+            }
+        });
+
+        // Ẩn sub-menu khi nhấp ra ngoài
+        $(document).click(function(event) {
+            if (!$(event.target).closest('.menu1').length) {
+                $(".sub-menu").slideUp();
+            }
+        });
+    });
+</script>

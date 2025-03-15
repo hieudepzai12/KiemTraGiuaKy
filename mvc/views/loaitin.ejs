@@ -6,7 +6,7 @@
 <% pagedTinTuc.forEach(tinTuc=> { %>
     <div class="row-item row">
         <div class="col-md-3">
-            <a href="/:idLT/:idTin">
+            <a href="/chitiet/<%=tinTuc.idLoaiTin%>/<%=tinTuc.id%>">
                 <br>
                 <img width="200px" height="200px" class="img-responsive" src="/img/tintuc/<%= tinTuc.Hinh %>" alt="">
             </a>
@@ -18,7 +18,7 @@
             <p>
                 <%= tinTuc.TomTat %>
             </p>
-            <a class="btnXemNgay btn btn-primary" href="/:idLT/:idTin">Xem ngay <span
+            <a class="btnXemNgay btn btn-primary" href="/chitiet/<%=tinTuc.idLoaiTin%>/<%=tinTuc.id%>">Xem ngay <span
                     class="glyphicon glyphicon-chevron-right"></span></a>
         </div>
         <div class="break"></div>

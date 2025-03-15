@@ -91,9 +91,11 @@ const getCommentByIdTin = async (idTin) => {
 }
 
 const addComment = async (idUser, idTin, comment) => {
-    const sql = `insert into comment values (?, ?, ?)`;
-    await db.query(sql, [idUser, idTin, comment]);
+const sql = `Insert into comment set idUser = ?, idTinTuc = ?, NoiDung = ?`;
+await db.query(sql, [idUser, idTin, comment]);
+
 }
+
 
 module.exports = { getSlides, getAllTheLoai, getLoaiTinByIdTL, getTinNoiBatByIdTL, getPagedTinTucByIdLT, getTheLoaiAndLoaiTin,
     getTinTucByIdLT, getTimKiemByTuKhoa, getPagedTimKiemByTuKhoa, get4TinLienQuan, getTinByIdTin, get4TinNoiBat, addComment, getCommentByIdTin } 
