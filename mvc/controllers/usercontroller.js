@@ -37,7 +37,7 @@ const dangKy = async (req, res) => {
         const registerData = req.body;
         const checkEmail = await userModel.checkEmail(registerData.email);
         if (checkEmail) {
-            //mã hoá mật khẩu bằng bcrypt => mã hoá mật khẩu bằng bcrypt là gì? 
+            //mã hoá mật khẩu bằng bcrypt => mã hoá mật khẩu bằng bcrypt là gì
             registerData.password = await bcrypt.hash(registerData.password, 10);
             await userModel.register(registerData);
             res.send(true);

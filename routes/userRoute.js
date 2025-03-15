@@ -8,6 +8,7 @@ userRouter.post('/dangky', userController.dangKy);
 userRouter.get('/dangnhap', userController.dangNhap);
 userRouter.post('/dangnhap', userController.dangNhap);
 userRouter.get('/dangxuat', userController.dangXuat);
+
 userRouter.post('/comment', userController.comment);
 
 module.exports = userRouter;

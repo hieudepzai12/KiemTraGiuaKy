@@ -14,9 +14,8 @@ const checkLogin = async (user) => {
 }
 
 const register = async (user) => {
-    const hashedPassword = await bcrypt.hash(user.password, 10);
     const sql = 'insert into users set?';
-    await db.query(sql, { ...user, password: hashedPassword });
+    await db.query(sql, { ...user, password:user.password});
 }
 
 const checkEmail = async (email) => {
