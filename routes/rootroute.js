@@ -2,17 +2,16 @@ const express = require("express");
 const rootRouter = express.Router();
 const tinTucRouter = require('./tintucroute');
 const tintuccontroller = require('../mvc/controllers/tintuccontroller');
-const userController = require('../mvc/controllers/usercontroller');
 
 //Tin tuc
 rootRouter.get('/', tintuccontroller.trangChu);
 rootRouter.use('/loaitin', tinTucRouter);
 rootRouter.get('/chitiet/:idLT/:idTin', tintuccontroller.chiTiet);
 
-//User
-rootRouter.use('/dangnhap', userController.dangNhap)
-rootRouter.get('/dangxuat', userController.dangXuat);
-rootRouter.use('/dangky', userController.dangKy);
+// //User
+// rootRouter.use('/dangnhap', userController.dangNhap)
+// rootRouter.get('/dangxuat', userController.dangXuat);
+// rootRouter.use('/dangky', userController.dangKy);
 
 //tim kiem
 rootRouter.get('/timkiem', tintuccontroller.timKiem);

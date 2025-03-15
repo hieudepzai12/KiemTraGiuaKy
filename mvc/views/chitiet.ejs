@@ -1,186 +1,182 @@
 <%- include('./head') %>
 
-    <style>
-        * {
-            color: black;
-        }
+<style>
+    * {
+        color: black;
+    }
 
-        .blueDetail {
-            color: blue !important;
-        }
-    </style>
+    .blueDetail {
+        color: blue !important;
+    }
+</style>
 
-    <body>
+<body>
 
-        <!-- Navigation -->
-        <%- include('./nav') %>
+    <!-- Navigation -->
+    <%- include('./nav') %>
 
-            <!-- Page Content -->
-            <div class="chiTiet container">
-                <div class="row">
+    <!-- Page Content -->
+    <div class="chiTiet container">
+        <div class="row">
 
-                    <!-- Blog Post Content Column -->
-                    <div class="col-lg-9" id="comments">
+            <!-- Blog Post Content Column -->
+            <div class="col-lg-9" id="comments">
 
-                        <!-- Blog Post -->
+                <!-- Blog Post -->
 
-                        <!-- Title -->
-                        <h1>
-                            <%= chiTiet.TieuDe %>
-                        </h1>
+                <!-- Title -->
+                <h1>
+                    <%= chiTiet.TieuDe %>
+                </h1>
 
-                        <!-- Author -->
-                        <p class="lead">
-                            by <a class="blueDetail" href="#">Hoàng Hiếu</a>
-                        </p>
+                <!-- Author -->
+                <p class="lead">
+                    by <a class="blueDetail" href="#">Hoàng Hiếu</a>
+                </p>
 
-                        <!-- Preview Image -->
-                        <img class="img-responsive" src="/img/tintuc/<%= chiTiet.Hinh %>" width="50%" alt="">
+                <!-- Preview Image -->
+                <img class="img-responsive" src="/img/tintuc/<%= chiTiet.Hinh %>" width="50%" alt="">
 
-                        <!-- Date/Time -->
-                        <br>
-                        <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
-                        <hr>
+                <!-- Date/Time -->
+                <br>
+                <p><span class="glyphicon glyphicon-time"></span> Posted on August 24, 2013 at 9:00 PM</p>
+                <hr>
 
-                        <!-- Post Content -->
-                        <p class="lead">
-                            <%= chiTiet.NoiDung %>
-                        </p>
+                <!-- Post Content -->
+                <p class="lead">
+                    <%= chiTiet.NoiDung %>
+                </p>
 
-                        <hr>
+                <hr>
 
-                        <!-- Blog Comments -->
+                <!-- Blog Comments -->
 
-                        <!-- Comments Form -->
-                        <% if (sessionState) { %>
-                            <form action="/comment" method="post">
-                                <div style="color:black;" class="well">
-                                    <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
-                                    <input type="hidden" name="idTin" value="<%= chiTiet.id %>">
-                                    <div class="form-group">
-                                        <textarea class="form-control" rows="3" id="txtComment"
-                                            name="comment"></textarea>
-                                    </div>
-                                    <button id="btnComment" name="btnComment" class="btn btn-primary">Gửi</button>
-    
-                                </div>
-                            </form>
-                            <% } else { %>
-                                <h4><a class="blueDetail" href="/dangnhap">Đăng nhập</a> để có thể bình luận.</h4>
-                                <% } %>
-                                    <hr>
-
-                                    <!-- Posted Comments -->
-
-                                    <!-- Comment -->
-                                    <% comments.forEach(cmt=> { %>
-                                        <div class="media"
-                                            style="background-color:rgb(129, 129, 129); padding:5px; border: 1px solid white; border-radius:5px;">
-                                            <a class="pull-left" href="#">
-                                                <img class="media-object" src="image/Hiếu.jpg" width="70px">
-                                            </a>
-                                            <div class="media-body">
-                                                <h4 class="media-heading" style="color:white">
-                                                    <%= cmt.Name %>
-                                                        <small style="color:lavender;">August 25, 2014 at 9:30
-                                                            PM</small>
-                                                </h4>
-                                                <p style="color:white">
-                                                    <%= cmt.NoiDung %>
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <% }) %>
-
-                    </div>
-
-                    <!-- Blog Sidebar Widgets Column -->
-                    <div class="col-md-3">
-
-                        <div class="panel panel-default">
-                            <div class="panel-heading danhMuc"><b style="color:white;">Tin liên quan</b></div>
-                            <div class="panel-body">
-
-                                <!-- item -->
-                                <% tinLQ.forEach(tlq=> { %>
-                                    <div class="row" style="margin-top: 10px;">
-                                        <div class="col-md-5">
-                                            <a href="/chitiet/<%= tlq.idLoaiTin %>/<%= tlq. id %>">
-                                                <img class="img-responsive" src="/img/tintuc/<%= tlq.Hinh %>" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <a href="/chitiet/<%= tlq.idLoaiTin %>/<%= tlq. id %>"><b>
-                                                    <%= tlq.TieuDe %>
-                                                </b></a>
-                                        </div>
-                                        <p class="tomTat">
-                                            <%= tlq.TomTat %>
-                                        </p>
-                                        <div class="break"></div>
-                                    </div>
-                                    <!-- end item -->
-                                    <% }) %>
+                <!-- Comments Form -->
+                <% if (sessionState) { %>
+                    <form action="/comment" method="post">
+                        <div style="color:black;" class="well">
+                            <h4>Viết bình luận ...<span class="glyphicon glyphicon-pencil"></span></h4>
+                            <input type="hidden" name="idTin" value="<%= chiTiet.id %>">
+                            <div class="form-group">
+                                <textarea class="form-control" rows="3" id="txtComment" name="comment"></textarea>
                             </div>
+                            <button id="btnComment" name="btnComment" class="btn btn-primary">Gửi</button>
                         </div>
-                        <input type="hidden" id="idTin" value="<%= idTin %>">
-                        <div class="panel panel-default">
-                            <div class="panel-heading"><b>Tin nổi bật</b></div>
-                            <div class="panel-body">
+                    </form>
+                <% } else { %>
+                    <h4><a class="blueDetail" href="/dangnhap">Đăng nhập</a> để có thể bình luận.</h4>
+                <% } %>
+                <hr>
 
-                                <!-- item -->
-                                <% tinNB.forEach( tnb=> { %>
-                                    <div class="row" style="margin-top: 10px;">
-                                        <div class="col-md-5">
-                                            <a href="/chitiet/<%= tnb.idLoaiTin %>/<%= tnb. id %>">
-                                                <img class="img-responsive" src="/img/tintuc/<%= tnb.Hinh %>" alt="">
-                                            </a>
-                                        </div>
-                                        <div class="col-md-7">
-                                            <a href="/chitiet/<%= tnb.idLoaiTin %>/<%= tnb. id %>"><b>
-                                                    <%= tnb.TieuDe %>
-                                                </b></a>
-                                        </div>
-                                        <p class="tomTat">
-                                            <%= tnb.TomTat %>
-                                        </p>
-                                        <div class="break"></div>
-                                    </div>
-                                    <% }) %>
-                                        <!-- end item -->
+                <!-- Posted Comments -->
 
-                            </div>
+                <!-- Comment -->
+                <% comments.forEach(cmt => { %>
+                    <div class="media" style="background-color:rgb(129, 129, 129); padding:5px; border: 1px solid white; border-radius:5px;">
+                        <a class="pull-left" href="#">
+                            <img class="media-object" src="image/Hiếu.jpg" width="70px">
+                        </a>
+                        <div class="media-body">
+                            <h4 class="media-heading" style="color:white">
+                                <%= cmt.name %>
+                                <small style="color:lavender;">August 25, 2014 at 9:30 PM</small>
+                            </h4>
+                            <p style="color:white">
+                                <%= cmt.NoiDung %>
+                            </p>
                         </div>
-
                     </div>
+                <% }) %>
 
-                </div>
-                <!-- /.row -->
             </div>
-            <!-- end Page Content -->
 
-            <!-- Footer -->
-            <?php include_once("footer.php"); ?>
-            <!-- end Footer -->
-            <!-- jQuery -->
-            <script src="js/jquery.js"></script>
-            <!-- Bootstrap Core JavaScript -->
-            <script src="js/bootstrap.min.js"></script>
-            <script src="js/my.js"></script>
-            <!-- Chú thích comment-->
-            <script>
-                $(document).ready(function () {
-                    $("#btnComment").click(function () {
-                        var detailId = $("#idTin").val();
-                        var comment = $("#txtComment").val();
-                        if (!comment) { return; }
-                        $.post("/comment", { txtComment: comment, detailId: detailId }, function (data) {
-                            $("#comments").append(data);
-                            $("#txtComment").val("");
-                        })
-                    })
-                })
-            </script>
-    </body>
+            <!-- Blog Sidebar Widgets Column -->
+            <div class="col-md-3">
 
-    </html>
+                <div class="panel panel-default">
+                    <div class="panel-heading danhMuc"><b style="color:white;">Tin liên quan</b></div>
+                    <div class="panel-body">
+
+                        <!-- item -->
+                        <% tinLQ.forEach(tlq => { %>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-5">
+                                    <a href="/chitiet/<%= tlq.idLoaiTin %>/<%= tlq.id %>">
+                                        <img class="img-responsive" src="/img/tintuc/<%= tlq.Hinh %>" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-md-7">
+                                    <a href="/chitiet/<%= tlq.idLoaiTin %>/<%= tlq.id %>"><b>
+                                            <%= tlq.TieuDe %>
+                                        </b></a>
+                                </div>
+                                <p class="tomTat">
+                                    <%= tlq.TomTat %>
+                                </p>
+                                <div class="break"></div>
+                            </div>
+                            <!-- end item -->
+                        <% }) %>
+                    </div>
+                </div>
+                <input type="hidden" id="idTin" value="<%= chiTiet.id %>">
+                <div class="panel panel-default">
+                    <div class="panel-heading"><b>Tin nổi bật</b></div>
+                    <div class="panel-body">
+
+                        <!-- item -->
+                        <% tinNB.forEach(tnb => { %>
+                            <div class="row" style="margin-top: 10px;">
+                                <div class="col-md-5">
+                                    <a href="/chitiet/<%= tnb.idLoaiTin %>/<%= tnb.id %>">
+                                        <img class="img-responsive" src="/img/tintuc/<%= tnb.Hinh %>" alt="">
+                                    </a>
+                                </div>
+                                <div class="col-md-7">
+                                    <a href="/chitiet/<%= tnb.idLoaiTin %>/<%= tnb.id %>"><b>
+                                            <%= tnb.TieuDe %>
+                                        </b></a>
+                                </div>
+                                <p class="tomTat">
+                                    <%= tnb.TomTat %>
+                                </p>
+                                <div class="break"></div>
+                            </div>
+                        <% }) %>
+                        <!-- end item -->
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- /.row -->
+    </div>
+    <!-- end Page Content -->
+
+    <!-- Footer -->
+    <%- include('./footer') %>
+    <!-- end Footer -->
+    <!-- jQuery -->
+    <script src="/js/jquery.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/my.js"></script>
+    <!-- Chú thích comment-->
+    <script>
+        $(document).ready(function () {
+            $("#btnComment").click(function (e) {
+                e.preventDefault();
+                var detailId = $("#idTin").val();
+                var comment = $("#txtComment").val();
+                if (!comment) { return; }
+                $.post("/comment", { comment: comment, idTin: detailId }, function (data) {
+                    location.reload();
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

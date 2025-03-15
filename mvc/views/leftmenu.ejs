@@ -19,21 +19,6 @@
 </div>
 
 <script>
-    $(document).ready(function() {
-        $(".menu1").click(function() {
-            // Ẩn tất cả các sub-menu
-            $(".sub-menu").slideUp();
-            // Hiển thị sub-menu của mục được nhấp
-            if (!$(this).next(".sub-menu").is(":visible")) {
-                $(this).next(".sub-menu").slideDown();
-            }
-        });
+    //Làm ẩn hiện
 
-        // Ẩn sub-menu khi nhấp ra ngoài
-        $(document).click(function(event) {
-            if (!$(event.target).closest('.menu1').length) {
-                $(".sub-menu").slideUp();
-            }
-        });
-    });
 </script>
