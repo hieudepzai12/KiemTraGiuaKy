@@ -1,6 +1,7 @@
 <%- include('./head') %>
 
     <body>
+        <div class="background"></div>
 
         <!-- Navigation -->
         <%- include("./nav"); %>
@@ -51,6 +52,99 @@
             <script src="/js/bootstrap.min.js"></script>
             <script src="/js/my.js"></script>
 
+
+            <style>
+                /* Nền động */
+                .background {
+                    position: fixed;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1;
+                    background: radial-gradient(circle, rgba(255, 223, 128, 0.5), rgba(255, 128, 128, 0));
+                    animation: glow 5s infinite alternate;
+                }
+
+                @keyframes glow {
+                    0% {
+                        opacity: 0.7;
+                        transform: scale(1);
+                    }
+
+                    100% {
+                        opacity: 1;
+                        transform: scale(1.2);
+                    }
+                }
+
+                /* Nội dung chính */
+                .content {
+                    position: relative;
+                    z-index: 10;
+                    background-color: rgba(255, 255, 255, 0.9);
+                    padding: 20px;
+                }
+
+                /* Hiệu ứng click Pokemon */
+                .click-effect {
+                    position: absolute;
+                    border-radius: 50%;
+                    transform: scale(0);
+                    animation: pokemonEffect 1s ease-out forwards;
+                    z-index: 5;
+                }
+
+                @keyframes pokemonEffect {
+                    0% {
+                        transform: scale(0.5);
+                        opacity: 1;
+                    }
+
+                    50% {
+                        transform: scale(2);
+                        opacity: 0.7;
+                        box-shadow: 0 0 30px 10px rgba(255, 255, 128, 0.8);
+                    }
+
+                    100% {
+                        transform: scale(3);
+                        opacity: 0;
+                    }
+                }
+            </style>
+            <!-- <audio id="effect-sound" src="/path-to-sound/pokemon-effect.mp3"></audio> -->
+            <script>
+                document.addEventListener('click', function (e) {
+                    // Tạo hiệu ứng click
+                    const effect = document.createElement('div');
+                    const size = Math.random() * 50 + 100;
+                    const colors = ['#ffcc00', '#ff4444', '#33ccff', '#66ff66'];
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+
+                    effect.className = 'click-effect';
+                    effect.style.width = `${size}px`;
+                    effect.style.height = `${size}px`;
+                    effect.style.left = `${e.pageX - size / 2}px`;
+                    effect.style.top = `${e.pageY - size / 2}px`;
+                    effect.style.background = `radial-gradient(circle, ${color}, transparent)`;
+
+                    document.body.appendChild(effect);
+
+                    // Xóa hiệu ứng sau khi hoàn thành
+                    setTimeout(() => {
+                        effect.remove();
+                    }, 1000);
+
+                    // Phát âm thanh
+                    // const sound = document.getElementById('effect-sound');
+                    // if (sound) {
+                    //     sound.currentTime = 0; // Reset lại âm thanh để có thể phát lại liên tục
+                    //     sound.play();
+                    // }
+                });
+
+            </script>
     </body>
 
     </html>

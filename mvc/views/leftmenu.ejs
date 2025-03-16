@@ -19,6 +19,26 @@
 </div>
 
 <script>
-    //Làm ẩn hiện
+   document.addEventListener('DOMContentLoaded', () => {
+    // Đóng tất cả các menu con khi tải trang
+    document.querySelectorAll('.sub-menu').forEach(subMenu => {
+        subMenu.style.display = 'none';
+    });
 
+    // Thêm sự kiện click để mở/đóng menu
+    document.querySelectorAll('.menu1').forEach(menu => {
+        menu.addEventListener('click', () => {
+            // Đóng tất cả menu con trước
+            document.querySelectorAll('.sub-menu').forEach(subMenu => {
+                subMenu.style.display = 'none';
+            });
+
+            // Mở menu con liên quan
+            const subMenu = menu.nextElementSibling;
+            if (subMenu && subMenu.classList.contains('sub-menu')) {
+                subMenu.style.display = 'block';
+            }
+        });
+    });
+});
 </script>
